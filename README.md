@@ -51,6 +51,6 @@ Parameters
 Notes
 ---------
  
- - gloryScroll can't be dealing with complex selectors such as ``` translate3d(0px, 32.032032032032035px, 0px); ``` 
+ - gloryScroll can't be dealing with complex selectors such as ``` translate3d(0px, 32px, 0px); ``` 
  - There's probably a hundred tools that does this better, but this is what i use for my projects when i need to jazz things up a little, and it has served me well so far. This is why I am sharing it here.
  - Touch device support is a no-go at the moment.
