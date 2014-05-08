@@ -20,22 +20,22 @@
 
     var settings = $.extend({
         element       : $(this), // Element selector
-        attribute     : 'top',   // CSS attribute type
+        attribute     : 'top',      // CSS attribute type
         start         : 0,      // px from top to start the animation
         stop          : 200,    // px from top to stop the animation
         startVal      : 100,    // CSS property value at the start of of scrolling area
         stopVal       : 200,    // CSS property value at the end of the scrolling area
         sprite        : false,  // Set to true if sprite is to be animated
         spriteFrames  : 16,     // (Optional) Sprite frames
-        spriteHeight  : 1985    // (Optional) Height of sprite image (px)
+        spriteHeight  : 1695    // (Optional) Height of sprite image
     }, options);
 
-    var that = this,
-      startArr = [],
-      stopArr = [];
+    var that = this;
+    var startArr = [];
+    var stopArr = [];
 
     /**
-    * Transpose value into a new range of numbers, keeping the ratio from the old range.
+    * Shared Function to transpose value into a new range of numbers, keeping the ratio from the old range.
     */
 
     this.transpose = function(scrollTop, oldMin, oldMax, newMin, newMax){
@@ -46,7 +46,7 @@
 
 
     /**
-    * Generate an array for the CSS attributes to be animated
+    * Shared Function to generate an array for the CSS attributes to be animated
     */
 
     this.generateCssArr = function(string){
@@ -60,9 +60,11 @@
 
         var string = arr[i];
 
-        if (string.match(/^-|\d/i)) {
+        // if (string.match(/^-|\dpx|em|%|rem/i)) { Old syntax
 
-          // String starts with a number (including negatives) and ends in px, em, % or rem
+        if (string.match(/^-|^\d/i)) {
+
+          // String starts with a number (including negatives and decimals)
 
           var attr = string.replace(/\.|\d|-/ig, '');
           var number = parseFloat(string);
@@ -83,13 +85,15 @@
           }
 
         };
+
       };
 
       return output;
     };
+    
 
     /**
-    * Generate CSS value to be animated
+    * Shared Function to generate CSS value to be animated
     */
 
     this.generateCssString = function(top){
@@ -110,6 +114,7 @@
         } else {
 
           // nothing to animate, move along!
+
           output.push(obj.string);
 
         };
@@ -120,7 +125,7 @@
 
 
     /**
-    * Animate the element - will be called on scroll and load
+    * Function to update the element - will be called on scroll and load
     */
 
     this.animate = function(){
@@ -151,9 +156,7 @@
           // Scrolltop is now below the stop point, set the end frame for all elements
 
           if (settings.sprite) {
-
             target.css( 'background-position', '0 -' + (settings.spriteHeight - frameHeight) + 'px' );
-
           } else { 
 
             target.css( settings.attribute, settings.stopVal );
@@ -166,9 +169,7 @@
           // Scrolltop is now above the start point, set the start frame for all elements
 
           if (settings.sprite) {
-
             target.css( 'background-position', '0px 0px' );
-
           } else { 
 
             target.css( settings.attribute, settings.startVal);
