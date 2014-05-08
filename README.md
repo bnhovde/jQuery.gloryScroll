@@ -29,7 +29,13 @@ Example 1: Animate opacity, fading out element when page is 500px from top.
 $('el').gloryScroll({ start: 0, stop: 500, attribute: 'opacity', startVal: '1.0', stopVal: '0.0' });
 ```
 
-Example 2: Animate a sprite sheet when scrolling.
+Example 2: Animate 3D transform, moving element down slowly as you scroll, similar to the [medium.com](http://medium.com) headline effect.
+
+```html
+$('el').gloryScroll({ start: 0, stop: 600, attribute: 'transform', startVal: 'translate3D( 0px, 0px, 0px )', stopVal: 'translate3D( 0px, 150px, 0px )' });
+```
+
+Example 3: Animate a sprite sheet when scrolling.
 
 ```html
 $('el').gloryScroll({ start: 0, stop: 500, sprite: true, spriteFrames: '16', spriteHeight: '2000' });
@@ -51,6 +57,6 @@ Parameters
 Notes
 ---------
  
- - gloryScroll can't be dealing with complex selectors such as ``` translate3d(0px, 32px, 0px); ``` 
+ - When animating multiple values, make sure you leave a space before each value, example: ``` translate3D( 0px, 32px, 0px); ``` and not ``` translate3D(0px,32px,0px); ```
  - There's probably a hundred tools that does this better, but this is what i use for my projects when i need to jazz things up a little, and it has served me well so far. This is why I am sharing it here.
  - Touch device support is a no-go at the moment.
