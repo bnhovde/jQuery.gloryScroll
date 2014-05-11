@@ -1,0 +1,30 @@
+{
+  "name": "gloryScroll",
+  "version": "1.0.0",
+  "homepage": "https://github.com/troglor/jQuery.gloryScroll",
+  "authors": [
+    "Bård N Hovde <bnhovde@gmail.com>"
+  ],
+  "dependencies": {
+    "jquery": "~1.9.1"
+  },
+  "description": "A lightweight utility library for animating CSS properties on scroll",
+  "main": "src/jQuery.gloryScroll.js",
+  "keywords": [
+    "scroll",
+    "animation",
+    "skroll",
+    "parallax",
+    "javascript",
+    "spritesheet",
+    "css3"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
