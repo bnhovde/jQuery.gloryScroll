@@ -27,12 +27,14 @@
         stopVal       : 200,    // CSS property value at the end of the scrolling area
         sprite        : false,  // Set to true if sprite is to be animated
         spriteFrames  : 16,     // (Optional) Sprite frames
-        spriteHeight  : 1695    // (Optional) Height of sprite image
+        spriteHeight  : 1695,   // (Optional) Height of sprite image
+        updateRate    : 10      // (Optional) Updaterate (in ms) on scroll
     }, options);
 
-    var that = this;
-    var startArr = [];
-    var stopArr = [];
+    var that = this,
+      startArr = [],
+      stopArr = [],
+      scrollTimeout = null;  
 
     /**
     * Shared Function to transpose value into a new range of numbers, keeping the ratio from the old range.
@@ -41,7 +43,7 @@
     this.transpose = function(scrollTop, oldMin, oldMax, newMin, newMax){
 
       var oldRange = (oldMax - oldMin);
-      return((((scrollTop - oldMin) * (newMax - newMin)) / oldRange) + newMin);
+      return(((((scrollTop - oldMin) * (newMax - newMin)) / oldRange) + newMin).toFixed(2));
     };
 
 
@@ -197,7 +199,16 @@
         that.animate();
 
         $(window).scroll(function() { 
-          that.animate();
+
+          if (scrollTimeout) {
+
+              // clear the timeout, if one is pending
+              clearTimeout(scrollTimeout);
+              scrollTimeout = null;
+          }
+          
+          scrollTimeout = setTimeout(that.animate, settings.updateRate);
+          
         });
 
       }

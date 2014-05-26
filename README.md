@@ -60,3 +60,13 @@ Notes
  - When animating multiple values, make sure you leave a space before each value, example: ``` translate3D( 0px, 32px, 0px); ``` and not ``` translate3D(0px,32px,0px); ```
  - There's probably a hundred tools that does this better, but this is what i use for my projects when i need to jazz things up a little, and it has served me well so far. This is why I am sharing it here.
  - Touch device support is a no-go at the moment.
+
+
+Some performance tips
+---------
+
+Taken from Dave Gamache's [article](https://medium.com/@dhg/82ced812e61c) on parallax performance.
+
+- Only use properties that are cheap for browsers to animate. Those are, more or less: translate3d, scale, rotation and opacity. Anything else and you’re probably not going to be running at 60fps.
+- Animate only absolutely and fixed position elements. (See article for explanation)
+- Avoid background-size:cover unless you’re sure it’s not affecting performance. (See article for explanation)
