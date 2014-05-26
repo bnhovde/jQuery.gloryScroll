@@ -52,6 +52,7 @@ Parameters
         sprite        : false,  // (Optional) Set to true if sprite is to be animated
         spriteFrames  : 16,     // (Optional) Sprite frames
         spriteHeight  : 1985    // (Optional) Height of sprite image (px)
+        updateRate    : 10      // (Optional) Updaterate (in ms) on scroll
 
 
 Notes
